@@ -19,7 +19,10 @@ void encryptFile(const char *filename, char *message, const char *key) {
     }
 	int messageLen = strlen(message);
     xorEncrypt(message, messageLen, key);
-    fwrite(message, 1, messageLen, file);
+    size_t bytesWritten = fwrite(message, 1, messageLen, file);
+    if (bytesWritten != messageLen) {
+        printf("Error writing to file.\n");
+	}
 
     fclose(file);
 }
@@ -38,6 +41,7 @@ void decryptFile(const char *filename, const char *key) {
         fclose(file);
         return;
     }
+
     if (fseek(file, 0, SEEK_SET) != 0) {
         printf("Error seeking file.\n");
         fclose(file);
@@ -65,25 +69,48 @@ void decryptFile(const char *filename, const char *key) {
 int main() {
     char choice[20];
     printf("Enter 'encrypt' or 'decrypt': ");
-    scanf("%19s", choice);
 
-    getchar();
+    if(scanf("%19s", choice) != 1) {
+        printf("Invalid input. \n");
+        return 1;
+	}
+
+    int c;
+	while ((c = getchar()) != '\n' && c != EOF) {
+    }
 
     if (strcmp(choice, "encrypt") == 0) {
         char message[1000], filename[50], key[50];
+
         printf("Enter the message: ");
         fgets(message, sizeof(message), stdin);
-        message[strcspn(message, "\n")] = '\0';
-        printf("Enter the filename: ");
-        scanf("%49s", filename);
-        printf("Enter the key: ");
-        scanf("%49s", key);
+        if (strchr(message, '\n') != NULL) {
+            message[strcspn(message, "\n")] = '\0';
+        }
+        else {
+			printf("Input too long. Message truncated.\n");
+            return 1;
+        }
+        
 
+        printf("Enter the filename: ");
+        if (scanf("%49s", filename) != 1) {
+			printf("Invalid filename. \n");
+            return 1;
+        }
+
+        printf("Enter the key: ");
+        if (scanf("%49s", key) != 1) {
+            printf("Invalid key. \n");
+            return 1;
+        }
         encryptFile(filename, message, key);
     } else if (strcmp(choice, "decrypt") == 0) {
         char filename[50], key[50];
+
         printf("Enter the filename: ");
         scanf("%49s", filename);
+
         printf("Enter the key: ");
         scanf("%49s", key);
 
