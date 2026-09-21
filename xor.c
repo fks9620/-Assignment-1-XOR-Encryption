@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <string.h>
-
+#include <stdlib.h>
 void xorEncrypt(char *message, char *key) {
     int keyLen = strlen(key);
     for (int i = 0; message[i] != '\0'; i++) {

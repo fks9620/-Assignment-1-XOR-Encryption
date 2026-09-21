@@ -1,10 +1,7 @@
 ﻿  xor.c
 C:\Users\Filip Infosec\source\repos\-Assignment-1-XOR-Encryption\xor.c(5,18): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
 C:\Users\Filip Infosec\source\repos\-Assignment-1-XOR-Encryption\xor.c(18,33): warning C4090: 'function': different 'const' qualifiers
-C:\Users\Filip Infosec\source\repos\-Assignment-1-XOR-Encryption\xor.c(35,28): warning C4013: 'malloc' undefined; assuming extern returning int
-C:\Users\Filip Infosec\source\repos\-Assignment-1-XOR-Encryption\xor.c(35,20): warning C4312: 'type cast': conversion from 'int' to 'char *' of greater size
 C:\Users\Filip Infosec\source\repos\-Assignment-1-XOR-Encryption\xor.c(45,24): warning C4090: 'function': different 'const' qualifiers
-C:\Users\Filip Infosec\source\repos\-Assignment-1-XOR-Encryption\xor.c(49,5): warning C4013: 'free' undefined; assuming extern returning int
 C:\Users\Filip Infosec\source\repos\-Assignment-1-XOR-Encryption\xor.c(56,5): warning C4996: 'scanf': This function or variable may be unsafe. Consider using scanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
 C:\Users\Filip Infosec\source\repos\-Assignment-1-XOR-Encryption\xor.c(66,9): warning C4996: 'scanf': This function or variable may be unsafe. Consider using scanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
 C:\Users\Filip Infosec\source\repos\-Assignment-1-XOR-Encryption\xor.c(68,9): warning C4996: 'scanf': This function or variable may be unsafe. Consider using scanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
