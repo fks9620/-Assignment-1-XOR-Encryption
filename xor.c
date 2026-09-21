@@ -1,9 +1,9 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
-void xorEncrypt(char *message, char *key) {
+void xorEncrypt(char *message, int messageLen, char *key) {
     int keyLen = strlen(key);
-    for (int i = 0; message[i] != '\0'; i++) {
+    for (int i = 0; i < messageLen; i++) {
         message[i] ^= key[i % keyLen];
     }
 }
@@ -15,7 +15,7 @@ void encryptFile(const char *filename, const char *message, const char *key) {
         return;
     }
 
-    xorEncrypt((char *)message, key);
+    xorEncrypt((char *)message, strlen(message), key);
     fwrite(message, 1, strlen(message), file);
 
     fclose(file);
@@ -42,7 +42,7 @@ void decryptFile(const char *filename, const char *key) {
     fread(buffer, 1, fileSize, file);
     buffer[fileSize] = '\0';
 
-    xorEncrypt(buffer, key);
+    xorEncrypt(buffer, fileSize, key);
 
     printf("%s\n", buffer);
 
