@@ -8,15 +8,15 @@ void xorEncrypt(char *message, int messageLen, char *key) {
     }
 }
 
-void encryptFile(const char *filename, const char *message, const char *key) {
+void encryptFile(const char *filename, char *message, const char *key) {
     FILE *file = fopen(filename, "w");
     if (!file) {
         printf("Error opening file for writing.\n");
         return;
     }
-
-    xorEncrypt((char *)message, strlen(message), key);
-    fwrite(message, 1, strlen(message), file);
+	int messageLen = strlen(message);
+    xorEncrypt(message, messageLen, key);
+    fwrite(message, 1, messageLen, file);
 
     fclose(file);
 }
