@@ -33,7 +33,16 @@ void decryptFile(const char *filename, const char *key) {
 
     fseek(file, 0, SEEK_END);
     long fileSize = ftell(file);
-    fseek(file, 0, SEEK_SET);
+    if (fileSize < 0) {
+		printf("Error getting file size. \n");
+        fclose(file);
+        return;
+    }
+    if (fseek(file, 0, SEEK_SET) != 0) {
+        printf("Error seeking file.\n");
+        fclose(file);
+        return;
+    }
 
     char *buffer = (char *)malloc(fileSize + 1);
     if (!buffer) {
@@ -42,10 +51,10 @@ void decryptFile(const char *filename, const char *key) {
         return;
     }
 
-    fread(buffer, 1, fileSize, file);
+    size_t bytesRead = fread(buffer, 1, fileSize, file);
     buffer[fileSize] = '\0';
 
-    xorEncrypt(buffer, fileSize, key);
+    xorEncrypt(buffer, bytesRead, key);
 
     printf("%s\n", buffer);
 
